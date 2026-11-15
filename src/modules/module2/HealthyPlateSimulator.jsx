@@ -8,9 +8,11 @@ import {
   Award, 
   Flame, 
   Layers, 
-  Info,
-  Droplet,
-  ChevronRight
+  Info, 
+  Droplet, 
+  ChevronRight,
+  Box,
+  ArrowRight
 } from 'lucide-react';
 import { soundFx } from '../../utils/soundEffects';
 import { fireConfetti } from '../../utils/confetti';
@@ -81,7 +83,7 @@ const PYRAMID_LEVELS = [
   }
 ];
 
-export default function HealthyPlateSimulator() {
+export default function HealthyPlateSimulator({ onSwitchTo3D }) {
   const [activeTab, setActiveTab] = useState('plate'); // 'plate' | 'pyramid'
 
   // Pilihan Semasa di Pinggan Murid
@@ -160,27 +162,40 @@ export default function HealthyPlateSimulator() {
           </div>
 
           {/* Suis Tab Pinggan Sihat vs Piramid Makanan */}
-          <div className="flex items-center gap-2 p-1 bg-slate-950 border border-slate-800 rounded-xl">
-            <button
-              onClick={() => { soundFx.playClick(); setActiveTab('plate'); }}
-              className={`px-4 py-2 rounded-lg text-xs font-bold transition-all ${
-                activeTab === 'plate'
-                  ? 'bg-emerald-500 text-slate-950 shadow-md'
-                  : 'text-slate-400 hover:text-white'
-              }`}
-            >
-              Pinggan Sihat (Suku-Suku Separuh)
-            </button>
-            <button
-              onClick={() => { soundFx.playClick(); setActiveTab('pyramid'); }}
-              className={`px-4 py-2 rounded-lg text-xs font-bold transition-all ${
-                activeTab === 'pyramid'
-                  ? 'bg-emerald-500 text-slate-950 shadow-md'
-                  : 'text-slate-400 hover:text-white'
-              }`}
-            >
-              Piramid Makanan (4 Aras)
-            </button>
+          <div className="flex flex-wrap items-center gap-2">
+            {onSwitchTo3D && (
+              <button
+                onClick={() => { soundFx.playClick(); onSwitchTo3D(); }}
+                className="px-4 py-2 rounded-xl text-xs font-bold bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 flex items-center gap-2 shadow-lg shadow-amber-500/20 border border-amber-400/40 transition-all hover:scale-105"
+              >
+                <Box className="w-4 h-4 text-slate-950 animate-pulse" />
+                <span>Buka Piramid 3D WebGL</span>
+                <ArrowRight className="w-3.5 h-3.5 text-slate-950" />
+              </button>
+            )}
+
+            <div className="flex items-center gap-1 p-1 bg-slate-950 border border-slate-800 rounded-xl">
+              <button
+                onClick={() => { soundFx.playClick(); setActiveTab('plate'); }}
+                className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                  activeTab === 'plate'
+                    ? 'bg-amber-500 text-slate-950 shadow-md'
+                    : 'text-slate-400 hover:text-white'
+                }`}
+              >
+                Pinggan Sihat
+              </button>
+              <button
+                onClick={() => { soundFx.playClick(); setActiveTab('pyramid'); }}
+                className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                  activeTab === 'pyramid'
+                    ? 'bg-amber-500 text-slate-950 shadow-md'
+                    : 'text-slate-400 hover:text-white'
+                }`}
+              >
+                Piramid Makanan (2D)
+              </button>
+            </div>
           </div>
         </div>
       </div>

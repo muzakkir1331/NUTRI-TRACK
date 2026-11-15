@@ -9,12 +9,14 @@ import {
   AlertCircle, 
   Sparkles,
   Thermometer,
-  ShieldAlert
+  ShieldAlert,
+  Box,
+  ArrowRight
 } from 'lucide-react';
 import { FOOD_SAMPLES, LAB_TESTS_DATA } from '../../data/labTestsData';
 import { soundFx } from '../../utils/soundEffects';
 
-export default function FoodLabSimulator() {
+export default function FoodLabSimulator({ onSwitchTo3D }) {
   const [selectedTestId, setSelectedTestId] = useState('iodine');
   const [selectedSampleId, setSelectedSampleId] = useState('kanji');
   
@@ -120,13 +122,26 @@ export default function FoodLabSimulator() {
             </p>
           </div>
 
-          <button
-            onClick={handleResetLab}
-            className="flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition-all self-start md:self-auto"
-          >
-            <RotateCcw className="w-4 h-4 text-emerald-400" />
-            <span>Bersihkan Tabung Uji</span>
-          </button>
+          <div className="flex flex-wrap items-center gap-2 self-start md:self-auto">
+            {onSwitchTo3D && (
+              <button
+                onClick={() => { soundFx.playClick(); onSwitchTo3D(); }}
+                className="flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 shadow-lg shadow-emerald-500/20 transition-all hover:scale-105"
+              >
+                <Box className="w-4 h-4 text-slate-950 animate-pulse" />
+                <span>Buka Makmal 3D WebGL</span>
+                <ArrowRight className="w-3.5 h-3.5 text-slate-950" />
+              </button>
+            )}
+
+            <button
+              onClick={handleResetLab}
+              className="flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition-all"
+            >
+              <RotateCcw className="w-4 h-4 text-emerald-400" />
+              <span>Bersihkan Tabung Uji</span>
+            </button>
+          </div>
         </div>
 
         {/* Pemilih 4 Jenis Ujian Makmal */}

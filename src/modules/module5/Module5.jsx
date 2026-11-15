@@ -7,9 +7,11 @@ import {
   Award,
   ChevronRight,
   Box,
-  Sparkles
+  Sparkles,
+  Zap
 } from 'lucide-react';
 import Digestion3DViewer from './Digestion3DViewer';
+import Enzyme3DViewer from './Enzyme3DViewer';
 import DigestionMap from './DigestionMap';
 import EnzymeSimulator from './EnzymeSimulator';
 import SalivaExperiment from './SalivaExperiment';
@@ -57,49 +59,64 @@ export default function Module5({ onNavigateHome, onAwardStars }) {
       </div>
 
       {/* Tab Navigasi Kumpulan 5 */}
-      <div className="flex flex-wrap items-center gap-2 p-1.5 rounded-2xl bg-slate-900/80 border border-slate-800 max-w-4xl">
+      <div className="flex flex-wrap items-center gap-2 p-1.5 rounded-2xl bg-slate-900/80 border border-slate-800 max-w-5xl">
         <button
           onClick={() => handleTabChange('3d')}
-          className={`flex-1 min-w-[170px] py-2.5 px-4 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition-all ${
+          className={`flex-1 min-w-[155px] py-2 px-3.5 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition-all ${
             activeTab === '3d'
               ? 'bg-gradient-to-r from-indigo-500 to-indigo-600 text-white shadow-lg shadow-indigo-500/25 border border-indigo-400/40'
               : 'text-slate-400 hover:text-white hover:bg-slate-800/50'
           }`}
         >
           <Box className={`w-4 h-4 ${activeTab === '3d' ? 'text-emerald-300 animate-pulse' : 'text-slate-400'}`} />
-          <span>Model 3D Interaktif</span>
+          <span>3D Anatomi Salur</span>
           <span className="px-1.5 py-0.2 rounded text-[10px] font-mono bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
-            3D WebGL
+            3D
+          </span>
+        </button>
+
+        <button
+          onClick={() => handleTabChange('enzyme3d')}
+          className={`flex-1 min-w-[155px] py-2 px-3.5 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition-all ${
+            activeTab === 'enzyme3d'
+              ? 'bg-gradient-to-r from-indigo-500 to-indigo-600 text-white shadow-lg shadow-indigo-500/25 border border-indigo-400/40'
+              : 'text-slate-400 hover:text-white hover:bg-slate-800/50'
+          }`}
+        >
+          <Zap className={`w-4 h-4 ${activeTab === 'enzyme3d' ? 'text-amber-300 animate-pulse' : 'text-slate-400'}`} />
+          <span>3D Enzim (Kunci-Mangga)</span>
+          <span className="px-1.5 py-0.2 rounded text-[10px] font-mono bg-amber-500/20 text-amber-300 border border-amber-500/30">
+            3D
           </span>
         </button>
 
         <button
           onClick={() => handleTabChange('map')}
-          className={`flex-1 min-w-[150px] py-2.5 px-4 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition-all ${
+          className={`flex-1 min-w-[140px] py-2 px-3.5 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition-all ${
             activeTab === 'map'
               ? 'bg-indigo-500 text-white shadow-lg shadow-indigo-500/20'
               : 'text-slate-400 hover:text-white hover:bg-slate-800/50'
           }`}
         >
           <GitBranch className="w-4 h-4" />
-          <span>Peta 2D Salur Pencernaan</span>
+          <span>Peta 2D Salur</span>
         </button>
 
         <button
           onClick={() => handleTabChange('enzymes')}
-          className={`flex-1 min-w-[150px] py-2.5 px-4 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition-all ${
+          className={`flex-1 min-w-[140px] py-2 px-3.5 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition-all ${
             activeTab === 'enzymes'
               ? 'bg-indigo-500 text-white shadow-lg shadow-indigo-500/20'
               : 'text-slate-400 hover:text-white hover:bg-slate-800/50'
           }`}
         >
           <Scissors className="w-4 h-4" />
-          <span>Simulator Enzim</span>
+          <span>Simulator 2D Enzim</span>
         </button>
 
         <button
           onClick={() => handleTabChange('saliva')}
-          className={`flex-1 min-w-[150px] py-2.5 px-4 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition-all ${
+          className={`flex-1 min-w-[140px] py-2 px-3.5 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition-all ${
             activeTab === 'saliva'
               ? 'bg-indigo-500 text-white shadow-lg shadow-indigo-500/20'
               : 'text-slate-400 hover:text-white hover:bg-slate-800/50'
@@ -112,8 +129,9 @@ export default function Module5({ onNavigateHome, onAwardStars }) {
 
       <div className="transition-opacity duration-300">
         {activeTab === '3d' && <Digestion3DViewer />}
+        {activeTab === 'enzyme3d' && <Enzyme3DViewer />}
         {activeTab === 'map' && <DigestionMap onSwitchTo3D={() => handleTabChange('3d')} />}
-        {activeTab === 'enzymes' && <EnzymeSimulator />}
+        {activeTab === 'enzymes' && <EnzymeSimulator onSwitchTo3D={() => handleTabChange('enzyme3d')} />}
         {activeTab === 'saliva' && <SalivaExperiment />}
       </div>
 

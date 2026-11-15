@@ -6,16 +6,18 @@ import {
   ArrowLeft, 
   Sparkles, 
   Award,
-  ChevronRight
+  ChevronRight,
+  Box
 } from 'lucide-react';
 import FoodEncyclopedia from './FoodEncyclopedia';
 import FoodLabSimulator from './FoodLabSimulator';
+import FoodLab3DViewer from './FoodLab3DViewer';
 import DeficiencyQuiz from './DeficiencyQuiz';
 import { soundFx } from '../../utils/soundEffects';
 
 export default function Module1({ onNavigateHome, onAwardStars }) {
-  // Tab aktif: 'encyclopedia' | 'simulator' | 'quiz'
-  const [activeTab, setActiveTab] = useState('encyclopedia');
+  // Tab aktif: 'encyclopedia' | 'lab3d' | 'simulator' | 'quiz'
+  const [activeTab, setActiveTab] = useState('lab3d');
 
   const handleTabChange = (tabKey) => {
     soundFx.playClick();
@@ -57,11 +59,26 @@ export default function Module1({ onNavigateHome, onAwardStars }) {
         </div>
       </div>
 
-      {/* Tab Navigasi 3 Sub-Modul */}
-      <div className="flex flex-wrap items-center gap-2 p-1.5 rounded-2xl bg-slate-900/80 border border-slate-800 max-w-2xl">
+      {/* Tab Navigasi Sub-Modul */}
+      <div className="flex flex-wrap items-center gap-2 p-1.5 rounded-2xl bg-slate-900/80 border border-slate-800 max-w-4xl">
+        <button
+          onClick={() => handleTabChange('lab3d')}
+          className={`flex-1 min-w-[170px] py-2.5 px-4 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition-all ${
+            activeTab === 'lab3d'
+              ? 'bg-gradient-to-r from-emerald-500 to-teal-500 text-slate-950 shadow-lg shadow-emerald-500/25 border border-emerald-400'
+              : 'text-slate-400 hover:text-white hover:bg-slate-800/50'
+          }`}
+        >
+          <Box className={`w-4 h-4 ${activeTab === 'lab3d' ? 'text-slate-950 animate-pulse' : 'text-emerald-400'}`} />
+          <span>Makmal 3D WebGL</span>
+          <span className="px-1.5 py-0.2 rounded text-[10px] font-mono bg-slate-950/30 text-slate-950 font-extrabold border border-slate-950/20">
+            3D Maya
+          </span>
+        </button>
+
         <button
           onClick={() => handleTabChange('encyclopedia')}
-          className={`flex-1 min-w-[160px] py-2.5 px-4 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition-all ${
+          className={`flex-1 min-w-[150px] py-2.5 px-4 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition-all ${
             activeTab === 'encyclopedia'
               ? 'bg-emerald-500 text-slate-950 shadow-lg shadow-emerald-500/20'
               : 'text-slate-400 hover:text-white hover:bg-slate-800/50'
@@ -73,19 +90,19 @@ export default function Module1({ onNavigateHome, onAwardStars }) {
 
         <button
           onClick={() => handleTabChange('simulator')}
-          className={`flex-1 min-w-[160px] py-2.5 px-4 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition-all ${
+          className={`flex-1 min-w-[150px] py-2.5 px-4 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition-all ${
             activeTab === 'simulator'
               ? 'bg-emerald-500 text-slate-950 shadow-lg shadow-emerald-500/20'
               : 'text-slate-400 hover:text-white hover:bg-slate-800/50'
           }`}
         >
           <FlaskConical className="w-4 h-4" />
-          <span>Simulator Makmal</span>
+          <span>Simulator 2D Makmal</span>
         </button>
 
         <button
           onClick={() => handleTabChange('quiz')}
-          className={`flex-1 min-w-[160px] py-2.5 px-4 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition-all ${
+          className={`flex-1 min-w-[150px] py-2.5 px-4 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition-all ${
             activeTab === 'quiz'
               ? 'bg-emerald-500 text-slate-950 shadow-lg shadow-emerald-500/20'
               : 'text-slate-400 hover:text-white hover:bg-slate-800/50'
@@ -98,8 +115,9 @@ export default function Module1({ onNavigateHome, onAwardStars }) {
 
       {/* Kandungan Tab Aktif */}
       <div className="transition-opacity duration-300">
+        {activeTab === 'lab3d' && <FoodLab3DViewer />}
         {activeTab === 'encyclopedia' && <FoodEncyclopedia />}
-        {activeTab === 'simulator' && <FoodLabSimulator />}
+        {activeTab === 'simulator' && <FoodLabSimulator onSwitchTo3D={() => handleTabChange('lab3d')} />}
         {activeTab === 'quiz' && <DeficiencyQuiz onAwardStars={onAwardStars} />}
       </div>
 

@@ -7,7 +7,9 @@ import {
   Layers, 
   Zap, 
   Info,
-  Beaker
+  Beaker,
+  Box,
+  ArrowRight
 } from 'lucide-react';
 import { soundFx } from '../../utils/soundEffects';
 import { fireConfetti } from '../../utils/confetti';
@@ -57,7 +59,7 @@ const ENZYME_DATA = [
   }
 ];
 
-export default function EnzymeSimulator() {
+export default function EnzymeSimulator({ onSwitchTo3D }) {
   const [selectedEnzyme, setSelectedEnzyme] = useState(ENZYME_DATA[0]);
   const [isCleaving, setIsCleaving] = useState(false);
   const [isDigested, setIsDigested] = useState(false);
@@ -90,18 +92,31 @@ export default function EnzymeSimulator() {
     <div className="space-y-6">
       
       {/* Pengenalan Simulator Enzim */}
-      <div className="bg-slate-900/60 border border-slate-800 rounded-2xl p-6">
-        <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-indigo-500/10 text-indigo-400 border border-indigo-500/30 mb-2">
-          <Sparkles className="w-3.5 h-3.5" />
-          <span>Standard Pembelajaran: SP 3.3.1 (Biokimia Pencernaan)</span>
+      <div className="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+        <div>
+          <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-indigo-500/10 text-indigo-400 border border-indigo-500/30 mb-2">
+            <Sparkles className="w-3.5 h-3.5" />
+            <span>Standard Pembelajaran: SP 3.3.1 (Biokimia Pencernaan)</span>
+          </div>
+          <h2 className="text-2xl font-bold text-white flex items-center gap-2">
+            <Scissors className="w-6 h-6 text-indigo-400" />
+            <span>Simulator Molekul Enzim Pencernaan (Mangkin Biologi)</span>
+          </h2>
+          <p className="text-sm text-slate-400 mt-1">
+            Enzim ialah mangkin biologi protein yang mempercepatkan tindak balas hidrolisis molekul makanan kompleks kepada unit ringkas yang boleh diserap oleh sel tubuh.
+          </p>
         </div>
-        <h2 className="text-2xl font-bold text-white flex items-center gap-2">
-          <Scissors className="w-6 h-6 text-indigo-400" />
-          <span>Simulator Molekul Enzim Pencernaan (Mangkin Biologi)</span>
-        </h2>
-        <p className="text-sm text-slate-400">
-          Enzim ialah mangkin biologi protein yang mempercepatkan tindak balas hidrolisis molekul makanan kompleks kepada unit ringkas yang boleh diserap oleh sel tubuh.
-        </p>
+
+        {onSwitchTo3D && (
+          <button
+            onClick={() => { soundFx.playClick(); onSwitchTo3D(); }}
+            className="px-4 py-2.5 rounded-xl bg-gradient-to-r from-indigo-600 to-indigo-500 hover:from-indigo-500 hover:to-indigo-400 text-white font-bold text-xs flex items-center gap-2 shadow-lg shadow-indigo-600/25 shrink-0 border border-indigo-400/40 transition-all hover:scale-105"
+          >
+            <Box className="w-4 h-4 text-amber-300 animate-pulse" />
+            <span>Buka Enzim 3D (Kunci & Mangga)</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </button>
+        )}
       </div>
 
       {/* Pemilih 3 Kategori Enzim */}

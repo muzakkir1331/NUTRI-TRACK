@@ -4,17 +4,19 @@ import {
   Layers, 
   Droplet, 
   ArrowLeft, 
-  Award,
+  Award, 
   ChevronRight,
-  Sparkles
+  Sparkles,
+  Box
 } from 'lucide-react';
+import Villus3DViewer from './Villus3DViewer';
 import ViskingVsVillus from './ViskingVsVillus';
 import ThreeSystemsMap from './ThreeSystemsMap';
 import FiberWaterTracker from './FiberWaterTracker';
 import { soundFx } from '../../utils/soundEffects';
 
 export default function Module6({ onNavigateHome, onAwardStars }) {
-  const [activeTab, setActiveTab] = useState('visking');
+  const [activeTab, setActiveTab] = useState('villus3d');
 
   const handleTabChange = (tabKey) => {
     soundFx.playClick();
@@ -55,22 +57,37 @@ export default function Module6({ onNavigateHome, onAwardStars }) {
       </div>
 
       {/* Tab Navigasi Kumpulan 6 */}
-      <div className="flex flex-wrap items-center gap-2 p-1.5 rounded-2xl bg-slate-900/80 border border-slate-800 max-w-2xl">
+      <div className="flex flex-wrap items-center gap-2 p-1.5 rounded-2xl bg-slate-900/80 border border-slate-800 max-w-4xl">
+        <button
+          onClick={() => handleTabChange('villus3d')}
+          className={`flex-1 min-w-[170px] py-2.5 px-4 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition-all ${
+            activeTab === 'villus3d'
+              ? 'bg-gradient-to-r from-violet-600 to-purple-600 text-white shadow-lg shadow-violet-600/25 border border-violet-400'
+              : 'text-slate-400 hover:text-white hover:bg-slate-800/50'
+          }`}
+        >
+          <Box className={`w-4 h-4 ${activeTab === 'villus3d' ? 'text-violet-300 animate-pulse' : 'text-slate-400'}`} />
+          <span>Model 3D Vilus</span>
+          <span className="px-1.5 py-0.2 rounded text-[10px] font-mono bg-violet-400/20 text-violet-200 border border-violet-400/30">
+            3D WebGL
+          </span>
+        </button>
+
         <button
           onClick={() => handleTabChange('visking')}
-          className={`flex-1 min-w-[160px] py-2.5 px-4 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition-all ${
+          className={`flex-1 min-w-[150px] py-2.5 px-4 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition-all ${
             activeTab === 'visking'
               ? 'bg-violet-600 text-white shadow-lg shadow-violet-600/20'
               : 'text-slate-400 hover:text-white hover:bg-slate-800/50'
           }`}
         >
           <Layers className="w-4 h-4" />
-          <span>Tiub Visking vs Vilus</span>
+          <span>Tiub Visking vs Vilus (2D)</span>
         </button>
 
         <button
           onClick={() => handleTabChange('systems')}
-          className={`flex-1 min-w-[160px] py-2.5 px-4 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition-all ${
+          className={`flex-1 min-w-[150px] py-2.5 px-4 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition-all ${
             activeTab === 'systems'
               ? 'bg-violet-600 text-white shadow-lg shadow-violet-600/20'
               : 'text-slate-400 hover:text-white hover:bg-slate-800/50'
@@ -82,7 +99,7 @@ export default function Module6({ onNavigateHome, onAwardStars }) {
 
         <button
           onClick={() => handleTabChange('fiber')}
-          className={`flex-1 min-w-[160px] py-2.5 px-4 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition-all ${
+          className={`flex-1 min-w-[150px] py-2.5 px-4 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition-all ${
             activeTab === 'fiber'
               ? 'bg-violet-600 text-white shadow-lg shadow-violet-600/20'
               : 'text-slate-400 hover:text-white hover:bg-slate-800/50'
@@ -94,7 +111,8 @@ export default function Module6({ onNavigateHome, onAwardStars }) {
       </div>
 
       <div className="transition-opacity duration-300">
-        {activeTab === 'visking' && <ViskingVsVillus />}
+        {activeTab === 'villus3d' && <Villus3DViewer />}
+        {activeTab === 'visking' && <ViskingVsVillus onSwitchTo3D={() => handleTabChange('villus3d')} />}
         {activeTab === 'systems' && <ThreeSystemsMap />}
         {activeTab === 'fiber' && <FiberWaterTracker />}
       </div>

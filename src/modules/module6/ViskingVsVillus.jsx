@@ -5,13 +5,14 @@ import {
   RotateCcw, 
   ZoomIn, 
   ArrowRight, 
-  Droplet,
-  Layers,
-  Heart
+  Droplet, 
+  Layers, 
+  Heart,
+  Box
 } from 'lucide-react';
 import { soundFx } from '../../utils/soundEffects';
 
-export default function ViskingVsVillus() {
+export default function ViskingVsVillus({ onSwitchTo3D }) {
   const [activeView, setActiveView] = useState('visking'); // 'visking' | 'villus'
 
   // Status Eksperimen Tiub Visking
@@ -40,23 +41,36 @@ export default function ViskingVsVillus() {
             </p>
           </div>
 
-          <div className="flex items-center gap-2 p-1 bg-slate-950 border border-slate-800 rounded-xl">
-            <button
-              onClick={() => { soundFx.playClick(); setActiveView('visking'); }}
-              className={`px-4 py-2 rounded-lg text-xs font-bold transition-all ${
-                activeView === 'visking' ? 'bg-violet-600 text-white shadow-md' : 'text-slate-400 hover:text-white'
-              }`}
-            >
-              Model Tiub Visking
-            </button>
-            <button
-              onClick={() => { soundFx.playClick(); setActiveView('villus'); }}
-              className={`px-4 py-2 rounded-lg text-xs font-bold transition-all ${
-                activeView === 'villus' ? 'bg-violet-600 text-white shadow-md' : 'text-slate-400 hover:text-white'
-              }`}
-            >
-              Keratan Rentas Vilus
-            </button>
+          <div className="flex flex-wrap items-center gap-2">
+            {onSwitchTo3D && (
+              <button
+                onClick={() => { soundFx.playClick(); onSwitchTo3D(); }}
+                className="px-4 py-2 rounded-xl text-xs font-bold bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-500 hover:to-purple-500 text-white flex items-center gap-2 shadow-lg shadow-violet-600/25 border border-violet-400/40 transition-all hover:scale-105"
+              >
+                <Box className="w-4 h-4 text-violet-300 animate-pulse" />
+                <span>Buka Model 3D Vilus</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </button>
+            )}
+
+            <div className="flex items-center gap-1 p-1 bg-slate-950 border border-slate-800 rounded-xl">
+              <button
+                onClick={() => { soundFx.playClick(); setActiveView('visking'); }}
+                className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                  activeView === 'visking' ? 'bg-violet-600 text-white shadow-md' : 'text-slate-400 hover:text-white'
+                }`}
+              >
+                Model Tiub Visking
+              </button>
+              <button
+                onClick={() => { soundFx.playClick(); setActiveView('villus'); }}
+                className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                  activeView === 'villus' ? 'bg-violet-600 text-white shadow-md' : 'text-slate-400 hover:text-white'
+                }`}
+              >
+                Keratan Rentas Vilus
+              </button>
+            </div>
           </div>
         </div>
       </div>
