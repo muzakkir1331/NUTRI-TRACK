@@ -5,15 +5,18 @@ import {
   Thermometer, 
   ArrowLeft, 
   Award,
-  ChevronRight
+  ChevronRight,
+  Box,
+  Sparkles
 } from 'lucide-react';
+import Digestion3DViewer from './Digestion3DViewer';
 import DigestionMap from './DigestionMap';
 import EnzymeSimulator from './EnzymeSimulator';
 import SalivaExperiment from './SalivaExperiment';
 import { soundFx } from '../../utils/soundEffects';
 
 export default function Module5({ onNavigateHome, onAwardStars }) {
-  const [activeTab, setActiveTab] = useState('map');
+  const [activeTab, setActiveTab] = useState('3d');
 
   const handleTabChange = (tabKey) => {
     soundFx.playClick();
@@ -54,22 +57,37 @@ export default function Module5({ onNavigateHome, onAwardStars }) {
       </div>
 
       {/* Tab Navigasi Kumpulan 5 */}
-      <div className="flex flex-wrap items-center gap-2 p-1.5 rounded-2xl bg-slate-900/80 border border-slate-800 max-w-2xl">
+      <div className="flex flex-wrap items-center gap-2 p-1.5 rounded-2xl bg-slate-900/80 border border-slate-800 max-w-4xl">
+        <button
+          onClick={() => handleTabChange('3d')}
+          className={`flex-1 min-w-[170px] py-2.5 px-4 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition-all ${
+            activeTab === '3d'
+              ? 'bg-gradient-to-r from-indigo-500 to-indigo-600 text-white shadow-lg shadow-indigo-500/25 border border-indigo-400/40'
+              : 'text-slate-400 hover:text-white hover:bg-slate-800/50'
+          }`}
+        >
+          <Box className={`w-4 h-4 ${activeTab === '3d' ? 'text-emerald-300 animate-pulse' : 'text-slate-400'}`} />
+          <span>Model 3D Interaktif</span>
+          <span className="px-1.5 py-0.2 rounded text-[10px] font-mono bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+            3D WebGL
+          </span>
+        </button>
+
         <button
           onClick={() => handleTabChange('map')}
-          className={`flex-1 min-w-[160px] py-2.5 px-4 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition-all ${
+          className={`flex-1 min-w-[150px] py-2.5 px-4 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition-all ${
             activeTab === 'map'
               ? 'bg-indigo-500 text-white shadow-lg shadow-indigo-500/20'
               : 'text-slate-400 hover:text-white hover:bg-slate-800/50'
           }`}
         >
           <GitBranch className="w-4 h-4" />
-          <span>Peta Salur Pencernaan</span>
+          <span>Peta 2D Salur Pencernaan</span>
         </button>
 
         <button
           onClick={() => handleTabChange('enzymes')}
-          className={`flex-1 min-w-[160px] py-2.5 px-4 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition-all ${
+          className={`flex-1 min-w-[150px] py-2.5 px-4 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition-all ${
             activeTab === 'enzymes'
               ? 'bg-indigo-500 text-white shadow-lg shadow-indigo-500/20'
               : 'text-slate-400 hover:text-white hover:bg-slate-800/50'
@@ -81,7 +99,7 @@ export default function Module5({ onNavigateHome, onAwardStars }) {
 
         <button
           onClick={() => handleTabChange('saliva')}
-          className={`flex-1 min-w-[160px] py-2.5 px-4 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition-all ${
+          className={`flex-1 min-w-[150px] py-2.5 px-4 rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition-all ${
             activeTab === 'saliva'
               ? 'bg-indigo-500 text-white shadow-lg shadow-indigo-500/20'
               : 'text-slate-400 hover:text-white hover:bg-slate-800/50'
@@ -93,7 +111,8 @@ export default function Module5({ onNavigateHome, onAwardStars }) {
       </div>
 
       <div className="transition-opacity duration-300">
-        {activeTab === 'map' && <DigestionMap />}
+        {activeTab === '3d' && <Digestion3DViewer />}
+        {activeTab === 'map' && <DigestionMap onSwitchTo3D={() => handleTabChange('3d')} />}
         {activeTab === 'enzymes' && <EnzymeSimulator />}
         {activeTab === 'saliva' && <SalivaExperiment />}
       </div>
