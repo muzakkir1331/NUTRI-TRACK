@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "e-rph-c3c71",
+  "private_key_id": "4aaecae7f8ffe8759280cd422fca1470541f116d",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDKxz7df9MvaiMT\nDA7rX/tsAMiAmmXa5JJmrI9febu9uGcsAcBwHvR7MuYty3zP4oA93PwAIv666f9O\nPtHqbE0hcveJfSJdOhhxqJSYVIpp35Y63SYl7CbeyfW8VdlAN7HaCtcUcG+51Zc3\nqlJr39AjzQEhUOm0Y7gFFBaXOhxyMarw4Gm3DNAFQSzt4tbE4aO1YjlIl0jUFJZU\nHqFkqgllG+F1/culxQ/W7CNW1uGqfVO41nmqZHnRED21jsCncOv282WsFzvBo8KG\nK4EngNycbnkQ8PuvYKEJ5zvYTc8XgqiFVecw1e/8pzPqIA065mrrGdo3RQsjY+yF\nLOJETB+pAgMBAAECggEADUQwDhZ76u8VFJzOOJK23JvoAjbnuUSJOfep6R+KG3lO\nIaxLKmKyEMHVmpMkqyaYyINVxs4DT5f5xKUaP22etbSjcn6p8gK4IO58K0OjqxXO\nSrNXeLVsnRiGL9BHhnqmU3swU1VgT96EFkeZvRY/VCpIO8VjBtLb0hQ8fqAWBpfw\nhbvLnrYukKEla1/e4pVv006hbP/xyjufCpZVmlluFjXfIXJROQaql7mLhBQJgqv9\nPPpWif/cHi/nVVZK7l/HY7fe/UeZF5dR0a8bMYt3o7gTYlzgoPobahrEBjItD68u\n1lo4tanhxHBvFRtyZcdbT4rVAxMSLCuU02tuRrAF4QKBgQD+j58Z+KCRbtmx9r8H\njcGtu4R0oesEfE5d4V6P3osRm3ZHyZuAAkJKuyc/fKTg7TcJnYre8So+PrxEECki\n7AwrfcjKLmOd52iH4EY1S8VwP4N6a3sA5Ieo0SjAKalsodD5S9+Ujaze7ioHZX/m\nEvu9o8iYhCT2s/6e4gY0izhgYQKBgQDL7LBK6iW+g1C4wM3rtoyzHMKQuIhwyK9b\n3UCH8PMBVRZBAyX9MYW7t/f0a8l3T9bzBNVmJYTjkYzxDmvFter4wxFanj544+MA\nu3gdb09ffCtFMYg4dpKFrTax5e768bC6VdOrqNHTBkg+G1Dt5/aNnDY6iHPTfVwB\nEiNUr4skSQKBgQD3tZBPuHWfL6wdFgur8RB/25I34HwOgFvN1QmsnBTdzFbb4l4z\nwX76s4WsrMDQs2S0MZ659RlzOp7+6G7vMZ1iEON7goqjVFSOq/oF0LbO1K8/SCmI\no9kyuF2cKK5aLFhqzp9BMl//CujRC77ahqx7TE5dw3Eos9xYhX8eUD9K4QKBgDlj\n50luFClFs5YLTOile3t9AJTSGjQDhraH0f1wJjOdyqGJTUuwgD6QS8wR+aUGZywF\nlDknHfsdn1jIAjSmOfbAj0W9ez9ygxRVrjw6c1AgFd1nTzr0w8+zK81tNJCTLHWE\nagnJfSOyhOpVrbUGrzCzYd+fP1mp0hbLD/5pWPNhAoGBAOjWEjpYrpBYVsEmHoxj\nwkEahpT5MxkmfaoMchBnIzBKDYTxZboCSF0tej37spHfULY/0m1k/GhsUDO7wz2R\nsYOuX+7e1lLxKujVk5SZ01RUUmiD6pfVAZL7mDAlZE0aY0bNMat9N48rxwwcHFTc\niU/M8hntPiJJXNfexznGVHb3\n-----END PRIVATE KEY-----\n",
+  "client_email": "nutritrack@e-rph-c3c71.iam.gserviceaccount.com",
+  "client_id": "111616219672584469853",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/nutritrack%40e-rph-c3c71.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
